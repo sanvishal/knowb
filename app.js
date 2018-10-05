@@ -40,6 +40,9 @@ app.use(bodyParser.json());
 //use public folder
 app.use(express.static(path.join(__dirname, "public")));
 
+//use port
+app.set("port", process.env.PORT || 3000);
+
 //express session
 app.use(
 	session({
@@ -96,6 +99,6 @@ let users = require("./routes/users");
 app.use("/users", users);
 
 //port server
-app.listen(3000, function() {
-	console.log("Server Started");
+app.listen(app.get("port"), function() {
+	console.log("Server Started at ", app.get("port"));
 });
