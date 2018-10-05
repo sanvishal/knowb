@@ -1,0 +1,42 @@
+doctype html
+html
+    head
+        title Knowledge base
+        link(rel='stylesheet' href='/bower_components/bootstrap/dist/css/bootstrap.css')
+        link(rel='stylesheet' href='/css/bootstrap.css')
+    body
+        nav.navbar.navbar-expand-sm.navbar-dark.bg-dark
+            a.navbar-brand(href='/') Knowledge DB
+            button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarsExample03', aria-controls='navbarsExample03', aria-expanded='false', aria-label='Toggle navigation')
+                span.navbar-toggler-icon
+            #navbarsExample03.collapse.navbar-collapse
+                ul.navbar-nav.mr-auto
+                    li.nav-item.active
+                        a.nav-link(href='/')
+                            | Home 
+                            span.sr-only (current)
+                    if user
+                        li.nav-item
+                            a.nav-link(href='/articles/add') Add Article
+                    if user
+                        li.nav-item
+                            a.nav-link(href='/users/logout') Logout
+                    else
+                        li.nav-item
+                            a.nav-link(href='/users/login') Login
+                        li.nav-item
+                            a.nav-link(href='/users/register') Register
+        != messages('message',locals)
+        br
+        .container
+            if err
+                each e, i in err
+                    div(class="alert alert-danger alert-dismissible") #{e.msg}
+            block content
+            br
+            hr
+            footer
+                p Copyright TK &copy; 2017
+        script(src='/bower_components/jquery/dist/jquery.js')
+        script(src='/bower_components/bootstrap/dist/js/bootstrap.js')
+        script(src='/js/main.js')

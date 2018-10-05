@@ -1,0 +1,14 @@
+extends layout
+
+block content
+    h1 #{title}
+    form(method='POST', action='/users/login')
+        .form-group
+            label Username:
+            input.form-control(name='uname',type='text')
+        br
+        .form-group
+            label Password:
+            input.form-control(name='pass',type='password')
+        br
+        input.btn.btn-primary(type='submit',value='Submit')
